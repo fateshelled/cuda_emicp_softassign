@@ -48,7 +48,7 @@ void cloud2data(const pcl::PointCloud<pcl::PointXYZ>::Ptr cloud,
 
 
 void cloud2data(const pcl::PointCloud<pcl::PointXYZ>::Ptr cloud,
-		boost::shared_array<float> &X, int &Xsize )
+		std::shared_ptr<float[]> &X, int &Xsize )
 {
   
   Xsize = cloud->size();

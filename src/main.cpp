@@ -475,7 +475,10 @@ int main(int argc, char** argv){
     {
       char *saveRTtoFilename;
       if(getCmdLineArgumentString(argc, (const char **) argv, "saveRTtoFile", &saveRTtoFilename))
-	saveRTtoFile(h_R, h_t, saveRTtoFilename);
+      {
+	      saveRTtoFile(h_R, h_t, saveRTtoFilename);
+      }
+      delete[] saveRTtoFilename;
     }
     
     if ( param.noviewer || param.nostop || param.viewer->wasStopped() )

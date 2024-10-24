@@ -21,10 +21,10 @@ Wed Aug 27 19:11:45 JST 2014
 Requirements
 ---
 
-- CUDA 6.5
-- PCL 1.7
-- FLANN
-- Boost
+- CUDA 11.8
+- PCL 1.12.1
+- FLANN 1.9.1
+- Boost 1.74.0
 - lapack, blas
 
 

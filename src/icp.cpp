@@ -26,7 +26,7 @@
 
 #include <iostream>
 
-#include <boost/shared_array.hpp>
+// #include <boost/shared_array.hpp>
 
 #include <flann/flann.hpp>
 
@@ -127,7 +127,7 @@ void icp(const pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_target,
   
   
   int Xsize, Ysize;
-  boost::shared_array<float> h_X, h_Y;
+  std::shared_ptr<float[]> h_X, h_Y;
   cloud2data(cloud_target, h_X, Xsize);
   cloud2data(cloud_source, h_Y, Ysize);
   
@@ -152,7 +152,7 @@ void icp(const pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_target,
   float* h_Yy = h_Y.get() + Ysize*1;
   float* h_Yz = h_Y.get() + Ysize*2;
 
-  boost::shared_array<float> h_Xcorr ( new float[Ysize*3] ); // points in X corresponding to Y
+  std::shared_ptr<float[]> h_Xcorr ( new float[Ysize*3] ); // points in X corresponding to Y
 
 
   float h_S[9];
@@ -164,7 +164,7 @@ void icp(const pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_target,
 
 
   // building flann index
-  boost::shared_array<float> m_X ( new float [Xsize*3] );
+  std::shared_ptr<float[]> m_X ( new float [Xsize*3] );
   for (int i = 0; i < Xsize; i++)
   {
     m_X[i*3 + 0] = h_Xx[i];
@@ -175,13 +175,13 @@ void icp(const pcl::PointCloud<pcl::PointXYZ>::Ptr cloud_target,
   flann::Index< flann::L2<float> > index( mat_X, flann::KDTreeIndexParams() );
   index.buildIndex();   
 
-  boost::shared_array<float> m_Y ( new float [Ysize*3] );
+  std::shared_ptr<float[]> m_Y ( new float [Ysize*3] );
   float* h_Xcorrx = h_Xcorr.get() + Ysize*0;
   float* h_Xcorry = h_Xcorr.get() + Ysize*1;
   float* h_Xcorrz = h_Xcorr.get() + Ysize*2;
   
   
-  boost::shared_array<float> h_Ycentered ( new float [Ysize*3] );
+  std::shared_ptr<float[]> h_Ycentered ( new float [Ysize*3] );
   {
     float* h_Ycenteredx = h_Ycentered.get() + Ysize*0;
     float* h_Ycenteredy = h_Ycentered.get() + Ysize*1;

@@ -3,8 +3,8 @@ set(CMAKE_VERBOSE_MAKEFILE 1) # to see all make process
 
 project( cuda_emicp_softassign )
 
-SET_PROPERTY(GLOBAL PROPERTY RULE_LAUNCH_COMPILE ccache)
-SET_PROPERTY(GLOBAL PROPERTY RULE_LAUNCH_LINK ccache) 
+# SET_PROPERTY(GLOBAL PROPERTY RULE_LAUNCH_COMPILE ccache)
+# SET_PROPERTY(GLOBAL PROPERTY RULE_LAUNCH_LINK ccache)
 
 
 find_package(PCL 1.7 REQUIRED)
@@ -26,7 +26,7 @@ endif()
 find_package(Boost 1.54 REQUIRED)
 
 find_package(CUDA 6.5 REQUIRED)
-include_directories ( ${CUDA_TOOLKIT_ROOT_DIR}/samples/common/inc/ )
+# include_directories ( ${CUDA_TOOLKIT_ROOT_DIR}/samples/common/inc/ )
 
 message("CUDA_VERSION: " ${CUDA_VERSION} )
 message("CUDA_CUDA_LIBRARY: " ${CUDA_CUDA_LIBRARY} )
@@ -48,6 +48,9 @@ add_definitions ( ${LAPACK_LINKER_FLAGS} )
 
 cuda_add_executable ( ${PROJECT_NAME} src/3dregistration.h src/main.cpp src/findRTfromS.cpp src/cloud2data.cpp src/icp.cpp src/emicp_cpu.cpp src/softassign.cu src/emicp.cu)
 target_link_libraries ( ${PROJECT_NAME} ${PCL_LIBRARIES} ${LAPACK_LIBRARIES} )
+target_include_directories(${PROJECT_NAME}
+ PUBLIC include
+)
 
 CUDA_ADD_CUBLAS_TO_TARGET ( ${PROJECT_NAME} )
 

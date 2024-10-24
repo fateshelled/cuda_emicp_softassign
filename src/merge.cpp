@@ -24,7 +24,7 @@
 */
 
 #include <iostream>
-#include <pcl/io/ply_io.h>
+#include <pcl/io/pcd_io.h>
 #include <pcl/io/vtk_lib_io.h>
 #include <pcl/point_types.h>
 #include <pcl/filters/filter_indices.h>
