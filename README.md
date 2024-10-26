@@ -22,7 +22,9 @@ Requirements
 ---
 
 - CUDA 11.8
-- PCL 1.12.1
+- PCL 1.14.1
+    - cannot visualize with PCL 1.12.1 and Ubuntu22.04
+        - https://github.com/PointCloudLibrary/pcl/issues/5237
 - FLANN 1.9.1
 - Boost 1.74.0
 - lapack, blas
